@@ -5,14 +5,17 @@
 	<key>beforeRunningCommand</key>
 	<string>saveActiveFile</string>
 	<key>command</key>
-	<string>. "$TM_SUPPORT_PATH/lib/webpreview.sh"
+	<string>#!/usr/bin/env bash
+[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
+
+. "$TM_SUPPORT_PATH/lib/webpreview.sh"
 html_header "${TM_FILENAME}"
 
 cd "$TM_DIRECTORY"
 
 echo '&lt;h2&gt;Compiling...&lt;/h2&gt;'
 
-OUT=$(gdmd -debug -unittest -gc -od$TMPDIR "$TM_FILENAME" 2&gt;&amp;1)
+OUT=$("${TM_GDMD:-gdmd}" -debug -unittest -gc -od$TMPDIR "$TM_FILENAME" 2&gt;&amp;1)
 
 if [ $? -eq 0 ] ; then
   echo $OUT | grep -v 'indirect jmp without'
@@ -28,15 +31,37 @@ html_footer
 </string>
 	<key>input</key>
 	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>@r</string>
 	<key>name</key>
 	<string>Compile &amp; Run Single File</string>
-	<key>output</key>
-	<string>showAsHTML</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>requiredCommands</key>
+	<array>
+		<dict>
+			<key>command</key>
+			<string>gdmd</string>
+			<key>locations</key>
+			<array>
+				<string>/opt/local/bin/gdmd</string>
+				<string>/usr/local/bin/gdmd</string>
+			</array>
+			<key>variable</key>
+			<string>TM_GDMD</string>
+		</dict>
+	</array>
 	<key>scope</key>
 	<string>source.d</string>
 	<key>uuid</key>
 	<string>CC26BACA-2BA5-4179-A05E-DB80360440E6</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>

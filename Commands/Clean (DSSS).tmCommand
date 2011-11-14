@@ -5,19 +5,43 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>require_cmd dsss
-dsss clean "$TM_DIRECTORY" | pre</string>
+	<string>#!/usr/bin/env bash
+[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
+
+"${TM_DSSS:-dsss}" clean "$TM_DIRECTORY" | pre</string>
 	<key>input</key>
 	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>^~@c</string>
 	<key>name</key>
 	<string>Clean</string>
-	<key>output</key>
-	<string>showAsHTML</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>requiredCommands</key>
+	<array>
+		<dict>
+			<key>command</key>
+			<string>dsss</string>
+			<key>locations</key>
+			<array>
+				<string>/usr/bin/dsss</string>
+				<string>/usr/local/bin/dsss</string>
+			</array>
+			<key>variable</key>
+			<string>TM_DSSS</string>
+		</dict>
+	</array>
 	<key>scope</key>
 	<string>source.d</string>
 	<key>uuid</key>
 	<string>6CBFA0E9-56C7-4B65-9358-8B7732F1E7C5</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>
