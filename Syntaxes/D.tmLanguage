@@ -38,7 +38,7 @@
 		<dict>
 			<key>begin</key>
 			<string>(?x)^\s*
-					((?:\b(public|private|protected|static|final|native|synchronized|abstract|export)\b\s*)*) # modifier
+					((?:\b(public|private|protected|static|final|synchronized|abstract|export|shared)\b\s*)*) # modifier
 					(class|interface)\s+
 					(\w+)\s* # identifier
 					(?:\(\s*([^\)]+)\s*\)|)\s* # Template type
@@ -150,7 +150,7 @@
 		<dict>
 			<key>begin</key>
 			<string>(?x)^\s*
-					((?:\b(public|private|protected|static|final|native|synchronized|abstract|export)\b\s*)*) # modifier
+					((?:\b(public|private|protected|static|final|synchronized|abstract|export|shared)\b\s*)*) # modifier
 					(struct)\s+
 					(\w+)\s* # identifier
 					(?:\(\s*([^\)]+)\s*\)|)\s* # Template type
@@ -212,7 +212,7 @@
 		<dict>
 			<key>begin</key>
 			<string>(?x)^\s*
-					((?:\b(public|private|protected|static|final|native|synchronized|abstract|threadsafe|transient|export)\b\s*)*) # modifier
+					((?:\b(public|private|protected|static|final|synchronized|abstract|export)\b\s*)*) # modifier
 					(\b(this))\s* # identifier
 					(?!.*;)  # abort if line has a ;
 					(?=\()</string>
@@ -247,7 +247,7 @@
     				(?:  ^                                 # begin-of-line
     				  |  (?: (?&lt;!else|new|=) )             #  or word + space before name
     				)
-					((?:\b(?:public|private|protected|static|final|native|synchronized|abstract|threadsafe|transient|export)\b\s*)*) # modifier
+					((?:\b(?:public|private|protected|static|final|synchronized|abstract|export)\b\s*)*) # modifier
     				(~this) # actual name
     				 \s*(\()                           # start bracket or end-of-line
     			</string>
@@ -287,8 +287,8 @@
 		<dict>
 			<key>begin</key>
 			<string>(?x)^\s*
-					((?:\b(?:public|private|protected|static|final|native|lazy|synchronized|abstract|threadsafe|transient|export)\b\s*)*) # modifier
-					(\b(?:void|boolean|byte|char|short|int|float|long|double|[\w_]+[\w0-9_]*|(?:\w+\.)*[A-Z]\w+)\b(?:&lt;(?:(?:(?:\w+\.)*[A-Z]\w+)(?:\s*,\s*)?)+&gt;|(?:\[\s*\])*)?)\s* # type
+					((?:\b(?:public|private|protected|static|final|lazy|synchronized|abstract|export)\b\s*)*) # modifier
+					(\b(?:void|byte|char|short|int|float|long|double|[\w_]+[\w0-9_]*|(?:\w+\.)*[A-Z]\w+)\b(?:&lt;(?:(?:(?:\w+\.)*[A-Z]\w+)(?:\s*,\s*)?)+&gt;|(?:\[\s*\])*)?)\s* # type
 					(\w+)\s* # identifier
 					(?!.*;)  # abort if line has a ;
 					(?=\()</string>
@@ -338,13 +338,13 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(private|protected|public|export)\b</string>
+			<string>\b(private|protected|public|export|package)\b</string>
 			<key>name</key>
 			<string>storage.modifier.access-control.d</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(auto|static|override|final|const|abstract|volatile|synchronized|lazy)\b</string>
+			<string>\b(auto|static|override|final|abstract|volatile|synchronized|lazy|nothrow|immutable|const|immutable|inout|ref|in|scope|__gshared|shared)\b|(@)property\b</string>
 			<key>name</key>
 			<string>storage.modifier.d</string>
 		</dict>
@@ -356,7 +356,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(ushort|int|uint|long|ulong|float|void|byte|ubyte|double|bit|char|wchar|ucent|cent|short|bool|dchar|real|ireal|ifloat|idouble|creal|cfloat|cdouble|lazy)\b</string>
+			<string>\b(ushort|int|uint|long|ulong|float|void|byte|ubyte|double|char|wchar|ucent|cent|short|bool|dchar|real|ireal|ifloat|idouble|creal|cfloat|cdouble|lazy|__vector)\b</string>
 			<key>name</key>
 			<string>storage.type.d</string>
 		</dict>
@@ -374,7 +374,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(if|else|switch|iftype)\b</string>
+			<string>\b(if|else|switch)\b</string>
 			<key>name</key>
 			<string>keyword.control.conditional.d</string>
 		</dict>
@@ -392,7 +392,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(version|return|with|invariant|body|scope|in|out|inout|asm|mixin|function|delegate)\b</string>
+			<string>\b(version|return|with|invariant|body|scope|asm|mixin|function|delegate)\b</string>
 			<key>name</key>
 			<string>keyword.control.statement.d</string>
 		</dict>
@@ -441,7 +441,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|null)\b</string>
+			<string>\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__MODULE__|__FUNCTION__|__PRETTY_FUNCTION__|__VENDOR__|__VERSION__|null)\b</string>
 			<key>name</key>
 			<string>constant.language.d</string>
 		</dict>
@@ -491,7 +491,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(opNeg|opCom|opPostInc|opPostDec|opCast|opAdd|opSub|opSub_r|opMul|opDiv|opDiv_r|opMod|opMod_r|opAnd|opOr|opXor|opShl|opShl_r|opShr|opShr_r|opUShr|opUShr_r|opCat|opCat_r|opEquals|opEquals|opCmp|opCmp|opCmp|opCmp|opAddAssign|opSubAssign|opMulAssign|opDivAssign|opModAssign|opAndAssign|opOrAssign|opXorAssign|opShlAssign|opShrAssign|opUShrAssign|opCatAssign|opIndex|opIndexAssign|opCall|opSlice|opSliceAssign|opPos|opAdd_r|opMul_r|opAnd_r|opOr_r|opXor_r)\b</string>
+			<string>\b(opNeg|opCom|opPostInc|opPostDec|opCast|opAdd|opSub|opSub_r|opMul|opDiv|opDiv_r|opMod|opMod_r|opAnd|opOr|opXor|opShl|opShl_r|opShr|opShr_r|opUShr|opUShr_r|opCat|opCat_r|opEquals|opEquals|opCmp|opCmp|opCmp|opCmp|opAddAssign|opSubAssign|opMulAssign|opDivAssign|opModAssign|opAndAssign|opOrAssign|opXorAssign|opShlAssign|opShrAssign|opUShrAssign|opCatAssign|opIndex|opIndexAssign|opCall|opSlice|opSliceAssign|opPos|opAdd_r|opMul_r|opAnd_r|opOr_r|opXor_r|opDispatch)\b</string>
 			<key>name</key>
 			<string>keyword.operator.overload.d</string>
 		</dict>
@@ -503,13 +503,13 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(new|throws)\b</string>
+			<string>\b(new)\b</string>
 			<key>name</key>
 			<string>keyword.other.class-fns.d</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(package|extern)\b</string>
+			<string>\b(extern)\b</string>
 			<key>name</key>
 			<string>keyword.other.external.d</string>
 		</dict>
@@ -518,6 +518,18 @@
 			<string>\b(deprecated|unittest|debug)\b</string>
 			<key>name</key>
 			<string>keyword.other.debug.d</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(__traits|__parameters)\b|(#)line\b</string>
+			<key>name</key>
+			<string>keyword.other.special.d</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(macro)\b</string>
+			<key>name</key>
+			<string>keyword.other.reserved.d</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -669,35 +681,12 @@
 						</dict>
 					</array>
 				</dict>
-				<dict>
-					<key>begin</key>
-					<string>(throws)</string>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.other.class-fns.d</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(?={)</string>
-					<key>name</key>
-					<string>meta.definition.throws.d</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#all-types</string>
-						</dict>
-					</array>
-				</dict>
 			</array>
 		</dict>
 		<key>storage-type-d</key>
 		<dict>
 			<key>match</key>
-			<string>\b(void|byte|short|char|int|long|float|double|boolean|([a-z]\w+\.)*[A-Z]\w+)\b</string>
+			<string>\b(void|byte|short|char|int|long|float|double|([a-z]\w+\.)*[A-Z]\w+)\b</string>
 			<key>name</key>
 			<string>storage.type.d</string>
 		</dict>
