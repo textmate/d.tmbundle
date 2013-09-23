@@ -320,6 +320,10 @@
 					<key>include</key>
 					<string>$base</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#block</string>
+				</dict>
 			</array>
 		</dict>
 		<dict>
@@ -555,6 +559,10 @@
 			<key>name</key>
 			<string>support.type.stdint.c</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#block</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -573,6 +581,43 @@
 				<dict>
 					<key>include</key>
 					<string>#storage-type-d</string>
+				</dict>
+			</array>
+		</dict>
+		<key>block</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\{</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.block.begin.d</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\}</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.block.end.d</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.block.d</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$base</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
