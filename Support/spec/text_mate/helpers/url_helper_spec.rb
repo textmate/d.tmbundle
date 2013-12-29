@@ -14,6 +14,26 @@ describe TextMate::Helpers::UrlHelper do
     @helper
   end
 
+  describe "link_to_txmt" do
+    let(:file) { "path/to/local/file" }
+    let(:text) { "foo" }
+    let(:line) { 30 }
+
+    it "creates an HTML link to a local file using the txmt:// protocol" do
+      result = "<a href=\"txmt://open?url=file://#{file}&line=#{line}\">#{text}</a>"
+      helper.link_to_txmt(text, file, line).should == result
+    end
+
+    context "when no line is given" do
+      let(:line) { nil }
+
+      it "creates an HTML link to a local file without the line info" do
+        result = "<a href=\"txmt://open?url=file://#{file}\">#{text}</a>"
+        helper.link_to_txmt(text, file, line).should == result
+      end
+    end
+  end
+
   describe "link_to" do
     it "creates an HTML link" do
       helper.link_to("foo", "bar").should == '<a href="bar">foo</a>'
