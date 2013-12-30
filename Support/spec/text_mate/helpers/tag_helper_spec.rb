@@ -59,6 +59,10 @@ describe TextMate::Helpers::TagHelper do
       it "creates an HTML tag with the given name and content" do
         helper.content_tag(:div){ "foo" }.should == "<div>foo</div>"
       end
+
+      it "doesn't escape the content of the block" do
+        helper.content_tag(:div){ "<span>foo</span>" }.should == "<div><span>foo</span></div>"
+      end
     end
   end
 

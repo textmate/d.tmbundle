@@ -1,6 +1,27 @@
 module TextMate
   module Helpers
     module TagHelper
+      # Appends the given classes to the given options hash.
+      #
+      # It will look for both the "class" and :class key. This will create a new
+      # :class key in the given hash if neither exists.
+      #
+      # @param options [Hash] hash of options to append the classes to
+      # @param new_classes [Array<String>] the classes to append
+      #
+      # @return [Hash] options
+      def append_class! (options, *new_classes)
+        return options if new_classes.empty?
+        key = options.key?("class") ? "class" : :class
+
+        cls = options[key].to_s
+        cls << " " unless cls.empty?
+
+        cls << new_classes.join(" ")
+        options[key] = cls
+        options
+      end
+
       # Converts the given Ruby options to HTML attributes.
       #
       # @param options [{ Symbol => String }]
@@ -23,15 +44,20 @@ module TextMate
       #   given this is considered to be the same as options
       #
       # @param options [{ Symbol => String }] this hash will be converted to HTML attributes
-      # @param escape [Boolean] if true will escape HTML
+      #
+      # @param escape [Boolean] if true will escape HTML. Defaults to true when no block is
+      #   given
+      #
       # @param block [Proc] if a block is given, the return value will be used as content
       #
       # @return [String] the HTML tag
-      def content_tag (name, content = nil, options = {}, escape = true, &block)
+      def content_tag (name, content = nil, options = {}, escape = nil, &block)
         if block_given?
           options = content if content.is_a?(Hash)
+          escape = false if escape.nil?
           content_tag_string(name, block.call, options, escape)
         else
+          escape = true if escape.nil?
           content_tag_string(name, content, options, escape)
         end
       end

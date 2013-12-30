@@ -14,11 +14,19 @@ describe TextMate::Helpers::UrlHelper do
     @helper
   end
 
-  describe "link_to_txmt" do
-    let(:file) { "path/to/local/file" }
-    let(:text) { "foo" }
-    let(:line) { 30 }
+  let(:file) { "path/to/local/file" }
+  let(:text) { "foo" }
+  let(:line) { 30 }
 
+  describe "link_to_error" do
+    it "creates an error link to a local file using the txmt:// protocol" do
+      content = "<span class=\"err\">#{text}(#{line})</span>"
+      result = "<a href=\"txmt://open?url=file://#{file}&line=#{line}\">#{content}</a>"
+      helper.link_to_error(text, file, line).should == result
+    end
+  end
+
+  describe "link_to_txmt" do
     it "creates an HTML link to a local file using the txmt:// protocol" do
       result = "<a href=\"txmt://open?url=file://#{file}&line=#{line}\">#{text}</a>"
       helper.link_to_txmt(text, file, line).should == result
