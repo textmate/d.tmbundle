@@ -14,22 +14,6 @@ describe TextMate::Helpers::TagHelper do
     @helper
   end
 
-  describe "tag_options" do
-    let(:options) { { :class => "foo", :id => "bar" } }
-
-    it "converts Ruby hashes to HTML attributes" do
-      helper.tag_options(options).should == 'class="foo" id="bar"'
-    end
-
-    context "when the key or value contains HTML" do
-      let(:options) { { :class => "<asd>foo", "<asd>id" => "bar" } }
-
-      it "escapes the HTML" do
-        helper.tag_options(options).should == 'class="&lt;asd&gt;foo" &lt;asd&gt;id="bar"'
-      end
-    end
-  end
-
   describe "content_tag" do
     context "when no content is given" do
       it "creates an HTML start and end tag with the given name" do
