@@ -707,7 +707,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\\(\\|[abefnprtv'"?]|[0-3]\d{,2}|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|&amp;\w+;)</string>
+					<string>\\(\\|[abefnprtv'"?]|[0-3]\d{0,2}|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|&amp;\w+;)</string>
 					<key>name</key>
 					<string>constant.character.escape.d</string>
 				</dict>
