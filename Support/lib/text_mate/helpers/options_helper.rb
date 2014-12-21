@@ -10,14 +10,14 @@ module TextMate
       # @param new_classes [Array<String>] the classes to append
       #
       # @return [Hash] options
-      def append_class! (options, *new_classes)
+      def append_class!(options, *new_classes)
         return options if new_classes.empty?
-        key = options.key?("class") ? "class" : :class
+        key = options.key?('class') ? 'class' : :class
 
         cls = options[key].to_s
-        cls << " " unless cls.empty?
+        cls << ' ' unless cls.empty?
 
-        cls << new_classes.join(" ")
+        cls << new_classes.join(' ')
         options[key] = cls
         options
       end
@@ -28,12 +28,12 @@ module TextMate
       # @param escape [Boolean] if true will escape HTML
       #
       # @return [String] the HTML attributes
-      def tag_options (options, escape = true)
+      def tag_options(options, escape = true)
         options.map do |attribute, value|
           attribute = ERB::Util.html_escape(attribute) if escape
           value = ERB::Util.html_escape(value) if escape
           "#{attribute}=\"#{value}\""
-        end.join(" ")
+        end.join(' ')
       end
     end
   end
