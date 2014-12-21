@@ -62,4 +62,32 @@ describe TextMate::Helpers::OptionsHelper do
       end
     end
   end
+
+  describe 'extract_options' do
+    let(:args) { [1, 2, 3, { a: 1 }] }
+
+    def result
+      helper.extract_options(*args)
+    end
+
+    it 'extracts the hash of options from an array' do
+      result.should == args
+    end
+
+    context 'with no hash in the arguments' do
+      let(:args) { [1, 2, nil] }
+
+      it 'sets the last element to an empty hash' do
+        result.should == [1, 2, {}]
+      end
+    end
+
+    context 'when hash is not the last element' do
+      let(:args) { [1, 2, { a: 3 }, nil] }
+
+      it 'should replace the last element with the hash and set the current element to nil' do
+        result.should == [1, 2, nil, { a: 3 }]
+      end
+    end
+  end
 end

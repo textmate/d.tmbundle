@@ -35,6 +35,24 @@ module TextMate
           "#{attribute}=\"#{value}\""
         end.join(' ')
       end
+
+      # Extras the hash of options in the given array.
+      #
+      # Extracts the last element in the given array that is a <tt>Hash<\tt>,
+      # replaces the last element with the hash and the current element with
+      # <tt>nil<\tt>. If there's no hash in the array the last element will
+      # be replaced with an empty hash.
+      #
+      # @param args [Array<Object>] the arguments to extract the hash from
+      #
+      # @return [Array<Object>] a new array with the hash as its last element
+      def extract_options(*args)
+        args = args.dup
+        index = args.rindex { |e| e.is_a?(Hash) } || args.length
+        args[-1] = args[index] || {}
+        args[index] = nil if index < args.length - 1
+        args
+      end
     end
   end
 end
