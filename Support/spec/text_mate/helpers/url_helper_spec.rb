@@ -19,10 +19,12 @@ describe TextMate::Helpers::UrlHelper do
   let(:line) { 30 }
 
   describe "link_to_error" do
+    let(:message) { 'message' }
+
     it "creates an error link to a local file using the txmt:// protocol" do
-      link = "<a href=\"txmt://open?url=file://#{file}&line=#{line}\">#{text}(#{line})</a>"
+      link = "<a href=\"txmt://open?url=file://#{file}&line=#{line}\">#{text}(#{line})</a>: #{message}<br />"
       result = "<span class=\"err\">#{link}</span>"
-      helper.link_to_error(text, file, line).should == result
+      helper.link_to_error(message, text, file, line).should == result
     end
   end
 

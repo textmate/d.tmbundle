@@ -9,19 +9,24 @@ module TextMate
 
       # Create an error link linking to a file on disk using the txmt protocol.
       #
+      # @param message [String] the error message
       # @param display_name [String] a short version of the file to link to
       # @param file [String] the full path to the file to link to
       # @param line [String, Integer] the line of the file to link to
       # @param options [{ Symbol => String }] this hash will be converted to HTML attributes
       #
       # @return [String] the error link
-      def link_to_error (display_name, file, line = nil, options = {})
+      def link_to_error (message, display_name, file, line = nil, options = {})
         text = display_name
         text += "(#{line})" if line
         text = ERB::Util.html_escape(text)
 
+        message = ': ' + ERB::Util.html_escape(message)
+
         content_tag(:span, class: 'err') do
-          link_to_txmt(text, file, line, options)
+          link_to_txmt(text, file, line, options) +
+          message +
+          tag(:br, self_closing: true)
         end
       end
 
