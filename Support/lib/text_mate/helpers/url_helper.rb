@@ -11,27 +11,32 @@ module TextMate
       #
       # @param message [String] the error message
       # @param display_name [String] a short version of the file to link to
-      # @param file [String] the full path to the file to link to
-      # @param line [String, Integer] the line of the file to link to
+      # @param file [String] the full path to the file where the error occurred
+      # @param line [String, Integer] the line where the error occurred
+      # @param column [String, Integer] the column where the error occurred
       #
       # @param options [{ Symbol => String }] this hash will be converted to
       #   HTML attributes
       #
       # @return [String] the error link
-      def link_to_error(message, display_name, file, line = nil, options = {})
-        if line.is_a?(Hash)
-          options = line
-          line = nil
+      def link_to_error(message, display_name, file, line = nil, column = nil,
+        options = nil)
+
+        line, column, options = extract_options(line, column, options)
+        text = display_name
+
+        if line
+          text += "(#{line}"
+          text += ",#{column}" if column
+          text += ')'
         end
 
-        text = display_name
-        text += "(#{line})" if line
         text = ERB::Util.html_escape(text)
 
         message = ': ' + ERB::Util.html_escape(message)
 
         content_tag(:span, class: 'err') do
-          link_to_txmt(text, file, line, options) +
+          link_to_txmt(text, file, line, column, options) +
             message +
             tag(:br, self_closing: true)
         end
@@ -45,7 +50,10 @@ module TextMate
       # @param file [String] the full path to the file to link to. If a block
       #   is given this is considered to be the same as line
       #
-      # @param line [String, Integer] the line of the file to link to. If a
+      # @param line [String, Integer] the line in the file to link to. If a
+      #   block is given this is considered to be the same as options
+      #
+      # @param column [String, Integer] the column in the line to link to. If a
       #   block is given this is considered to be the same as options
       #
       # @param options [{ Symbol => String }] this hash will be converted to
@@ -54,21 +62,19 @@ module TextMate
       # @param block [Proc] the text of the link
       #
       # @return [String] the link
-      def link_to_txmt(text, file, line = nil, options = {}, &block)
-        if block_given?
-          options = line
-          line = file
-          file = text
-        end
+      def link_to_txmt(text, file, line = nil, column = nil, options = nil,
+        &block)
 
-        if line.is_a?(Hash)
-          options = line
-          line = nil
-        end
+        file, line, column, options = text, file, line, column if block_given?
+        line, column, options = extract_options(line, column, options)
 
         line = line.to_s
         line = "&line=#{line}" unless line.empty?
-        url = TEXT_MATE_PROTOCOL + file + line
+
+        column = column.to_s
+        column = "&column=#{column}" unless column.empty?
+
+        url = TEXT_MATE_PROTOCOL + file + line + column
 
         if block_given?
           link_to(url, options, &block)

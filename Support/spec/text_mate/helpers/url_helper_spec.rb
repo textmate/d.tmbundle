@@ -34,6 +34,35 @@ describe TextMate::Helpers::UrlHelper do
         helper.link_to_error(message, text, file, line).should == expected
       end
 
+      context 'with column' do
+        let(:column) { 2 }
+
+        let(:href) do
+          "\"txmt://open?url=file://#{file}&line=#{line}&column=#{column}\""
+        end
+
+        let(:link) do
+          "<a href=#{href}>#{text}(#{line},#{column})</a>: #{message}<br />"
+        end
+
+        it 'creates an error link with line and column number' do
+          args = [message, text, file, line, column]
+          helper.link_to_error(*args).should == expected
+        end
+
+        context 'with attributes' do
+          let(:link) do
+            content = "#{text}(#{line},#{column})"
+            "<a href=#{href} foo=\"bar\">#{content}</a>: #{message}<br />"
+          end
+
+          it 'creates an error link with attributes' do
+            args = [message, text, file, line, column, foo: 'bar']
+            helper.link_to_error(*args).should == expected
+          end
+        end
+      end
+
       context 'with attributes' do
         let(:link) do
           "<a href=#{href} foo=\"bar\">#{text}(#{line})</a>: #{message}<br />"
