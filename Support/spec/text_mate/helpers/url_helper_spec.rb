@@ -33,6 +33,25 @@ describe TextMate::Helpers::UrlHelper do
       it 'creates an error link with line number' do
         helper.link_to_error(message, text, file, line).should == expected
       end
+
+      context 'with attributes' do
+        let(:link) do
+          "<a href=#{href} foo=\"bar\">#{text}(#{line})</a>: #{message}<br />"
+        end
+
+        it 'creates an error link with attributes' do
+          result = helper.link_to_error(message, text, file, line, foo: 'bar')
+          result.should == expected
+        end
+      end
+    end
+
+    context 'with attributes' do
+      let(:link) { "<a href=#{href} foo=\"bar\">#{text}</a>: #{message}<br />" }
+
+      it 'creates an error link with attributes' do
+        helper.link_to_error(message, text, file, foo: 'bar').should == expected
+      end
     end
   end
 

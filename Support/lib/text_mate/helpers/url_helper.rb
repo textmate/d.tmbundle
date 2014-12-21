@@ -19,6 +19,11 @@ module TextMate
       #
       # @return [String] the error link
       def link_to_error(message, display_name, file, line = nil, options = {})
+        if line.is_a?(Hash)
+          options = line
+          line = nil
+        end
+
         text = display_name
         text += "(#{line})" if line
         text = ERB::Util.html_escape(text)
@@ -54,6 +59,11 @@ module TextMate
           options = line
           line = file
           file = text
+        end
+
+        if line.is_a?(Hash)
+          options = line
+          line = nil
         end
 
         line = line.to_s
