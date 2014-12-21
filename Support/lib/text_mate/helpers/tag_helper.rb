@@ -1,3 +1,5 @@
+require_relative 'options_helper'
+
 module TextMate
   module Helpers
     module TagHelper

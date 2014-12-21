@@ -20,8 +20,8 @@ module TextMate
         text += "(#{line})" if line
         text = ERB::Util.html_escape(text)
 
-        link_to_txmt(file, line, options) do
-          content_tag(:span, text, :class => "err")
+        content_tag(:span, class: 'err') do
+          link_to_txmt(text, file, line, options)
         end
       end
 
