@@ -18,28 +18,37 @@ describe TextMate::Helpers::UrlHelper do
 
   describe 'link_to_error' do
     let(:message) { 'message' }
+    let(:href) { "\"txmt://open?url=file://#{file}\"" }
+    let(:link) { "<a href=#{href}>#{text}</a>: #{message}<br />" }
+    let(:expected) { "<span class=\"err\">#{link}</span>" }
 
     it 'creates an error link to a local file using the txmt:// protocol' do
-      href = "\"txmt://open?url=file://#{file}&line=#{line}\""
-      link = "<a href=#{href}>#{text}(#{line})</a>: #{message}<br />"
-      result = "<span class=\"err\">#{link}</span>"
-      helper.link_to_error(message, text, file, line).should == result
+      helper.link_to_error(message, text, file).should == expected
+    end
+
+    context 'with line number' do
+      let(:href) { "\"txmt://open?url=file://#{file}&line=#{line}\"" }
+      let(:link) { "<a href=#{href}>#{text}(#{line})</a>: #{message}<br />" }
+
+      it 'creates an error link with line number' do
+        helper.link_to_error(message, text, file, line).should == expected
+      end
     end
   end
 
   describe 'link_to_txmt' do
+    let(:href) { "\"txmt://open?url=file://#{file}\"" }
+    let(:expected) { "<a href=#{href}>#{text}</a>" }
+
     it 'creates an HTML link to a local file using the txmt:// protocol' do
-      href = "\"txmt://open?url=file://#{file}&line=#{line}\""
-      result = "<a href=#{href}>#{text}</a>"
-      helper.link_to_txmt(text, file, line).should == result
+      helper.link_to_txmt(text, file).should == expected
     end
 
-    context 'when no line is given' do
-      let(:line) { nil }
+    context 'with line number' do
+      let(:href) { "\"txmt://open?url=file://#{file}&line=#{line}\"" }
 
-      it 'creates an HTML link to a local file without the line info' do
-        result = "<a href=\"txmt://open?url=file://#{file}\">#{text}</a>"
-        helper.link_to_txmt(text, file, line).should == result
+      it 'creates an HTML link with line number' do
+        helper.link_to_txmt(text, file, line).should == expected
       end
     end
   end
