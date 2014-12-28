@@ -45,7 +45,7 @@ class ScriptRunner
 
   def run_command(cmd)
     TextMate::Executor.run(*cmd) do |line, type|
-      error_handler.handle line, type
+      error_handler.handle(line, type)
     end
   end
 
@@ -53,16 +53,11 @@ class ScriptRunner
     @run_path ||= File.join(TextMate.project_path, Compiler.run_shell)
   end
 
-  def tm_project_path
-    return @tm_project_path if defined?(@tm_project_path)
-    @tm_project_path = TextMate.env.project_directory
-  end
-
   def restore_working_directory(&block)
-    @current_dir = Dir.pwd
+    current_dir = Dir.pwd
     block.call
   ensure
-    Dir.chdir @current_dir
+    Dir.chdir current_dir
   end
 
   def dub?
