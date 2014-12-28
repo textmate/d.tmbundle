@@ -30,6 +30,7 @@ module DMate
     private
 
     def handle_exception(exception, file, line, message)
+      file = module_to_path(file)
       display_name = display_name(file)
       display_name = "#{exception}@#{display_name}"
 
@@ -43,7 +44,7 @@ module DMate
         column = column_or_message
       end
 
-      return message, display_name(file), file, line, column
+      return message, display_name(file), full_path(file), line, column
     end
 
     def error_marks(file, line, column, message)
@@ -62,6 +63,20 @@ module DMate
 
     def display_name(path)
       File.basename(path)
+    end
+
+    def full_path(path)
+      File.absolute_path(path, TextMate.project_path)
+    end
+
+    def module_to_path(module_name)
+      return unless TextMate.project?
+
+      path = File.join(TextMate.project_path, module_name)
+      return path if File.exist?(path)
+
+      path = module_name.gsub('.', File::SEPARATOR)
+      File.exist?(path + '.di') ? path + '.di' : path + '.d'
     end
   end
 end
