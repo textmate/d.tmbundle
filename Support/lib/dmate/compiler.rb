@@ -1,31 +1,52 @@
 module DMate
-  #
-  module Compiler
-    module_function
+  class Compiler < BasicObject
+    class << self
+      def dmd
+        @dc ||= Dmd.new
+      end
 
-    def self.cached_tm_env(symbol, default_value = symbol)
-      instance_name = :"@#{symbol}"
+      def rdmd
+        @rdmd ||= Rdmd.new
+      end
 
-      self.class.send(:define_method, symbol) do
-        value = instance_variable_get(instance_name)
-        return value if value
+      def dub
+        @dub ||= Dub.new
+      end
 
-        value = TextMate.env[symbol.to_s.upcase] || default_value.to_s
-        instance_variable_set(instance_name, value)
-        value
+      def run_shell
+        'run.sh'
       end
     end
 
-    cached_tm_env(:dmd, 'dmd')
-    cached_tm_env(:rdmd)
-    cached_tm_env(:dub)
-
-    def run_shell
-      'run.sh'
+    def __class__
+      (class << self; self end).superclass
     end
 
-    def version(compiler)
-      `#{compiler} | head -n 1`
+    def executable
+      @executable ||= begin
+        class_name = __class__.name.split('::').last
+        ::TextMate.env[class_name.upcase] || class_name.downcase
+      end
+    end
+
+    def method_missing(meth, *args, &block)
+      executable.send(meth, *args, &block)
+    end
+
+    def version_options
+      { version_args: '--help' }
+    end
+
+    class Dmd < Compiler
+    end
+
+    class Rdmd < Compiler
+    end
+
+    class Dub < Compiler
+      def version_options
+        super.merge(version_regex: /.+(DUB version.+)$/m, version_replace: '\1')
+      end
     end
   end
 end

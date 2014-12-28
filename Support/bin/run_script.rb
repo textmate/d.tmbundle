@@ -18,8 +18,8 @@ class ScriptRunner
   def run
     restore_working_directory do
       TextMate.save_current_document
-      cmd = TextMate.project? ? run_project : run_single_file
-      run_command(cmd)
+      args = TextMate.project? ? run_project : run_single_file
+      run_command(args)
     end
   end
 
@@ -30,12 +30,14 @@ class ScriptRunner
   def run_single_file
     rdmd = Compiler.rdmd
     compiler = Compiler.dmd
-    [rdmd, '-vcolumns', "--compiler=#{compiler}", TextMate.env.filepath]
+    [rdmd, '-vcolumns', "--compiler=#{compiler}", TextMate.env.filepath,
+      compiler.version_options]
   end
 
   def run_project
     if dub?
-      [Compiler.dub, 'run']
+      compiler = Compiler.dub
+      [compiler, 'run', compiler.version_options]
     elsif run_shell?
       ['bash', run_shell_path]
     else
@@ -43,8 +45,8 @@ class ScriptRunner
     end
   end
 
-  def run_command(cmd)
-    TextMate::Executor.run(*cmd) do |line, type|
+  def run_command(args)
+    TextMate::Executor.run(*args) do |line, type|
       error_handler.handle(line, type)
     end
   end
