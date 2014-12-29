@@ -33,8 +33,6 @@ html_footer
 	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>keyEquivalent</key>
-	<string>@r</string>
 	<key>name</key>
 	<string>Compile &amp; Run Single File</string>
 	<key>outputCaret</key>
