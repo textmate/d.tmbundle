@@ -1,6 +1,6 @@
 require 'pathname'
 
-TextMate.require_bundle 'lib/text_mate/helpers/url_helper'
+require 'text_mate/helpers/url_helper'
 
 module DMate
   class ErrorHandler
@@ -70,12 +70,12 @@ module DMate
     end
 
     def module_to_path(module_name)
-      return unless TextMate.project?
+      return module_name if File.exist?(module_name) || !TextMate.project?
 
       path = File.join(TextMate.project_path, module_name)
       return path if File.exist?(path)
 
-      path = module_name.gsub('.', File::SEPARATOR)
+      path = path.gsub('.', File::SEPARATOR)
       File.exist?(path + '.di') ? path + '.di' : path + '.d'
     end
   end
