@@ -1,12 +1,14 @@
+$LOAD_PATH << File.join(ENV['TM_BUNDLE_SUPPORT'], 'lib')
+
 require 'pathname'
 
-require ENV['TM_BUNDLE_SUPPORT'] + '/lib/text_mate/text_mate'
+require 'text_mate/text_mate'
 
 TextMate.require_support 'lib/tm/executor'
 TextMate.require_support 'lib/tm/save_current_document'
 
-TextMate.require_bundle 'lib/dmate/compiler'
-TextMate.require_bundle 'lib/dmate/error_handler'
+require 'dmate/compiler'
+require 'dmate/error_handler'
 
 class ScriptRunner
   include DMate
