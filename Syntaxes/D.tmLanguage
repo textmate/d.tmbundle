@@ -287,7 +287,7 @@
 		<dict>
 			<key>begin</key>
 			<string>(?x)^\s*
-					((?:\b(?:public|private|protected|static|final|lazy|synchronized|abstract|export)\b\s*)*) # modifier
+					((?:\b(?:public|private|protected|static|final|synchronized|abstract|export|override|auto|nothrow|immutable|const|inout|ref|shared)\b\s*)*) # modifier
 					(\b(?:void|byte|char|short|int|float|long|double|[\w_]+[\w0-9_]*|(?:\w+\.)*[A-Z]\w+)\b(?:&lt;(?:(?:(?:\w+\.)*[A-Z]\w+)(?:\s*,\s*)?)+&gt;|(?:\[\s*\])*)?)\s* # type
 					(\w+)\s* # identifier
 					(?!.*;)  # abort if line has a ;
@@ -348,7 +348,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(auto|static|override|final|abstract|volatile|synchronized|lazy|nothrow|immutable|const|inout|ref|in|scope|__gshared|shared)\b|(@)(property|disable|nogc)\b</string>
+			<string>\b(auto|static|override|final|abstract|volatile|synchronized|lazy|nothrow|immutable|const|inout|ref|in|scope|__gshared|shared|pure)\b|(@)(property|disable|nogc|safe|trusted|system)\b</string>
 			<key>name</key>
 			<string>storage.modifier.d</string>
 		</dict>
