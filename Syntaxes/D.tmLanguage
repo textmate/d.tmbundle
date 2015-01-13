@@ -348,7 +348,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(auto|static|override|final|abstract|volatile|synchronized|lazy|nothrow|immutable|const|immutable|inout|ref|in|scope|__gshared|shared)\b|(@)property\b</string>
+			<string>\b(auto|static|override|final|abstract|volatile|synchronized|lazy|nothrow|immutable|const|inout|ref|in|scope|__gshared|shared)\b|(@)(property|disable|nogc)\b</string>
 			<key>name</key>
 			<string>storage.modifier.d</string>
 		</dict>
@@ -525,7 +525,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(deprecated|unittest|debug)\b</string>
+			<string>\b(deprecated|unittest|assert|debug)\b</string>
 			<key>name</key>
 			<string>keyword.other.debug.d</string>
 		</dict>
