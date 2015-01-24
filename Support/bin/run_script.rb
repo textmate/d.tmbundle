@@ -37,11 +37,11 @@ class ScriptRunner
   end
 
   def run_project
-    if dub?
+    if run_shell?
+      ['bash', run_shell_path]
+    elsif dub?
       compiler = Compiler.dub
       [compiler, 'run', compiler.version_options]
-    elsif run_shell?
-      ['bash', run_shell_path]
     else
       run_single_file
     end
