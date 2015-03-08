@@ -23,8 +23,6 @@ html_footer
 	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>keyEquivalent</key>
-	<string>@b</string>
 	<key>name</key>
 	<string>Build</string>
 	<key>outputCaret</key>
