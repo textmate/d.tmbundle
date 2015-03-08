@@ -122,7 +122,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?={)</string>
+			<string>(?={|;)</string>
 			<key>name</key>
 			<string>meta.definition.class.d</string>
 			<key>patterns</key>
@@ -193,7 +193,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?={)</string>
+			<string>(?={|;)</string>
 			<key>name</key>
 			<string>meta.definition.struct.d</string>
 			<key>patterns</key>
