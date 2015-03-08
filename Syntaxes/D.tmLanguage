@@ -92,8 +92,13 @@
 				</dict>
 				<key>5</key>
 				<dict>
-					<key>name</key>
-					<string>storage.type.template.d</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$base</string>
+						</dict>
+					</array>
 				</dict>
 				<key>6</key>
 				<dict>
@@ -145,6 +150,10 @@
 						</dict>
 					</array>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#template-constraint-d</string>
+				</dict>
 			</array>
 		</dict>
 		<dict>
@@ -174,8 +183,13 @@
 				</dict>
 				<key>5</key>
 				<dict>
-					<key>name</key>
-					<string>storage.type.template.d</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$base</string>
+						</dict>
+					</array>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -206,6 +220,10 @@
 							<string>#all-types</string>
 						</dict>
 					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#template-constraint-d</string>
 				</dict>
 			</array>
 		</dict>
@@ -951,6 +969,31 @@
 			<string>\b((?:tango|std)\.[\w\.]+)\b</string>
 			<key>name</key>
 			<string>support.type.d</string>
+		</dict>
+		<key>template-constraint-d</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>$base</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\s*(if\s*\(\s*([^\)]+)\s*\)|)</string>
+					<key>name</key>
+					<string>meta.definition.template-constraint.d</string>
+				</dict>
+			</array>
 		</dict>
 	</dict>
 	<key>scopeName</key>
