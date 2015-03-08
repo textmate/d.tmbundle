@@ -3,8 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>class ${1:${TM_FILENAME/(.*?)(\..+)/$1/}} {
-	this($2) {
+	<string>class ${1:${TM_FILENAME/(.*?)(\..+)/$1/}}
+{
+	this($2)
+	{
 		$0
 	}
 }

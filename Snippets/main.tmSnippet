@@ -3,7 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>void main() {
+	<string>void main()
+{
 	${1}
 }</string>
 	<key>name</key>

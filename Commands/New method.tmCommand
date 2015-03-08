@@ -16,24 +16,32 @@ method_name = ENV["TM_SELECTED_TEXT"] || ENV["TM_CURRENT_WORD"] or
   )
 
 print &lt;&lt;END_SNIPPET
-void #{e_sn method_name}(\${1:args}) {
+\${1:void} #{e_sn method_name}(\${2:args})
+{
 	\$0
 }
-END_SNIPPET
-</string>
+END_SNIPPET</string>
 	<key>fallbackInput</key>
 	<string>word</string>
 	<key>input</key>
 	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>$</string>
 	<key>name</key>
 	<string>New Method</string>
-	<key>output</key>
-	<string>insertAsSnippet</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>snippet</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
 	<key>scope</key>
 	<string>source.d</string>
 	<key>uuid</key>
 	<string>7EB57A38-809C-464D-8025-CE990B100488</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>
