@@ -214,7 +214,6 @@
 			<string>(?x)^\s*
 					((?:\b(public|private|protected|static|final|synchronized|abstract|export)\b\s*)*) # modifier
 					(\b(this))\s* # identifier
-					(?!.*;)  # abort if line has a ;
 					(?=\()</string>
 			<key>captures</key>
 			<dict>
@@ -230,7 +229,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?={)</string>
+			<string>(?={|;)</string>
 			<key>name</key>
 			<string>meta.definition.constructor.d</string>
 			<key>patterns</key>
@@ -290,7 +289,6 @@
 					((?:\b(?:public|private|protected|static|final|synchronized|abstract|export|override|auto|nothrow|immutable|const|inout|ref|shared)\b\s*)*) # modifier
 					(\b(?:void|byte|char|short|int|float|long|double|[\w_]+[\w0-9_]*|(?:\w+\.)*[A-Z]\w+)\b(?:&lt;(?:(?:(?:\w+\.)*[A-Z]\w+)(?:\s*,\s*)?)+&gt;|(?:\[\s*\])*)?)\s* # type
 					(\w+)\s* # identifier
-					(?!.*;)  # abort if line has a ;
 					(?=\()</string>
 			<key>beginCaptures</key>
 			<dict>
@@ -311,7 +309,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?={)</string>
+			<string>(?={|;)</string>
 			<key>name</key>
 			<string>meta.definition.method.d</string>
 			<key>patterns</key>
