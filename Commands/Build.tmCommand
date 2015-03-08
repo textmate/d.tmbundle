@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>autoScrollOutput</key>
+	<true/>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+
+require ENV['TM_BUNDLE_SUPPORT'] + '/bin/build_script'</string>
+	<key>input</key>
+	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@b</string>
+	<key>name</key>
+	<string>Build</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.d</string>
+	<key>semanticClass</key>
+	<string>process.build.script.d</string>
+	<key>uuid</key>
+	<string>AA8221FD-066E-4A9D-A23D-701BDF5E0272</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

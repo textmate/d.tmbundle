@@ -13,8 +13,8 @@ module DMate
         @dub ||= Dub.new
       end
 
-      def run_shell
-        'run.sh'
+      def shell
+        @shell ||= Shell.new
       end
     end
 
@@ -46,6 +46,24 @@ module DMate
     class Dub < Compiler
       def version_options
         super.merge(version_regex: /.+(DUB version.+)$/m, version_replace: '\1')
+      end
+
+      def run
+        'run'
+      end
+
+      def build
+        'build'
+      end
+    end
+
+    class Shell < Compiler
+      def run
+        'run.sh'
+      end
+
+      def build
+        'build.sh'
       end
     end
   end
