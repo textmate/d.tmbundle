@@ -36,6 +36,12 @@
 			<string>text.html.javadoc</string>
 		</dict>
 		<dict>
+			<key>match</key>
+			<string>\b((static\s+)?if|else|switch)\b</string>
+			<key>name</key>
+			<string>keyword.control.conditional.d</string>
+		</dict>
+		<dict>
 			<key>begin</key>
 			<string>(?x)^\s*
 					((?:\b(public|private|protected|static|final|synchronized|abstract|export|shared)\b\s*)*) # modifier
@@ -391,12 +397,6 @@
 			<string>\b(return|break|case|continue|default|do|while|for|switch|if|else)\b</string>
 			<key>name</key>
 			<string>keyword.control.d</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b(if|else|switch)\b</string>
-			<key>name</key>
-			<string>keyword.control.conditional.d</string>
 		</dict>
 		<dict>
 			<key>match</key>
