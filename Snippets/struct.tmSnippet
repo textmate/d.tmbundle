@@ -6,7 +6,8 @@
 	<string>/**
  * $2
  */
-struct ${1:name}() {
+struct ${1:name}
+{
 	$3
 }</string>
 	<key>name</key>

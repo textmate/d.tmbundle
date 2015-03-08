@@ -3,11 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>try {
+	<string>try
+{
 	$2
-} catch (${1:Exception} e) {
+}
+catch (${1:Exception} e)
+{
 	$3
-} finally {
+}
+finally
+{
 	$0
 }</string>
 	<key>name</key>

@@ -6,8 +6,9 @@
 	<string>/**
  * $2
  */
-${1:void} ${2:method}() {
-	${3}
+${1:void} ${2:method}(${3:args})
+{
+	${0}
 }</string>
 	<key>name</key>
 	<string>method … { … }</string>
