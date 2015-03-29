@@ -419,6 +419,30 @@
 			</array>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.external.d</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>constant.language.external.d</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>constant.language.external.d</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(extern)(\s*\(\s*(((C\+\+)(\s*,\s*[A-Za-z_][A-Za-z0-9._]*)?)|(C|D|Windows|Pascal|System))\s*\))?</string>
+			<key>name</key>
+			<string>meta.external.d</string>
+		</dict>
+		<dict>
 			<key>match</key>
 			<string>\b([A-Z][A-Z0-9_]+)\b</string>
 			<key>name</key>
@@ -602,12 +626,6 @@
 			<string>\b(new)\b</string>
 			<key>name</key>
 			<string>keyword.other.class-fns.d</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b(extern)\b</string>
-			<key>name</key>
-			<string>keyword.other.external.d</string>
 		</dict>
 		<dict>
 			<key>match</key>
