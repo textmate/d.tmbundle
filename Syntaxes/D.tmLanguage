@@ -349,6 +349,76 @@
 			</array>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>(?x)^\s*
+					(__traits)
+					\(
+					(isAbstractClass|
+					isArithmetic|
+					isAssociativeArray|
+					isFinalClass|
+					isPOD|
+					isNested|
+					isFloating|
+					isIntegral|
+					isScalar|
+					isStaticArray|
+					isUnsigned|
+					isVirtualFunction|
+					isVirtualMethod|
+					isAbstractFunction|
+					isFinalFunction|
+					isStaticFunction|
+					isOverrideFunction|
+					isRef|
+					isOut|
+					isLazy|
+					hasMember|
+					identifier|
+					getAliasThis|
+					getAttributes|
+					getFunctionAttributes|
+					getMember|
+					getOverloads|
+					getPointerBitmap|
+					getProtection|
+					getVirtualFunctions|
+					getVirtualMethods|
+					getUnitTests|
+					parent|
+					classInstanceSize|
+					getVirtualIndex|
+					allMembers|
+					derivedMembers|
+					isSame|
+					compiles)
+					,</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.special.d</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.language.traits.d</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\);</string>
+			<key>name</key>
+			<string>meta.traits.d</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$base</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>match</key>
 			<string>\b([A-Z][A-Z0-9_]+)\b</string>
 			<key>name</key>
@@ -547,7 +617,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(__traits|__parameters)\b|(#)line\b</string>
+			<string>\b(__parameters)\b|(#)line\b</string>
 			<key>name</key>
 			<string>keyword.other.special.d</string>
 		</dict>
