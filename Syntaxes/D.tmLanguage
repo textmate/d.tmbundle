@@ -426,7 +426,7 @@
 			<key>begin</key>
 			<string>(?x)^\s*
 					((?:\b(?:public|private|protected|static|final|synchronized|abstract|export|override|auto|nothrow|immutable|const|inout|ref|shared)\b\s*)*) # modifier
-					(\b(?:void|byte|char|short|int|float|long|double|[\w_]+[\w0-9_]*|(?:\w+\.)*[A-Z]\w+)\b(?:&lt;(?:(?:(?:\w+\.)*[A-Z]\w+)(?:\s*,\s*)?)+&gt;|(?:\[\s*\])*)?)\s* # type
+					(?:([^\s]+))\s+ # return type
 					(\w+)\s* # identifier
 					(?=\()</string>
 			<key>beginCaptures</key>
@@ -438,8 +438,13 @@
 				</dict>
 				<key>2</key>
 				<dict>
-					<key>name</key>
-					<string>storage.type.structure.d</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$base</string>
+						</dict>
+					</array>
 				</dict>
 				<key>3</key>
 				<dict>
