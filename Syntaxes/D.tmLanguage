@@ -2377,7 +2377,7 @@
 		<key>support-type-d</key>
 		<dict>
 			<key>match</key>
-			<string>\b((?:tango|std)\.[\w\.]+)\b</string>
+			<string>\b((?:core|std)\.[\w\.]+)\b</string>
 			<key>name</key>
 			<string>support.type.d</string>
 		</dict>
