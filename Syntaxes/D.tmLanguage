@@ -1168,7 +1168,7 @@
 		<key>storage-type-d</key>
 		<dict>
 			<key>match</key>
-			<string>\b(void|byte|short|char|int|long|float|double|([a-z]\w+\.)*[A-Z]\w+)\b</string>
+			<string>\b(void|byte|short|char|int|long|float|double)\b</string>
 			<key>name</key>
 			<string>storage.type.d</string>
 		</dict>
