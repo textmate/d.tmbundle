@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>contactEmailRot13</key>
-	<string>enfzhf@synwz.fr</string>
+	<string>qbbo@zr.pbz</string>
 	<key>contactName</key>
-	<string>Rasmus Andersson</string>
+	<string>Jacob Carlborg</string>
 	<key>description</key>
-	<string>Syntax highlight for the &lt;a href="http://www.digitalmars.com/d/"&gt;D programming language&lt;/a&gt;</string>
+	<string>Syntax highlight for the &lt;a href=&quot;http://dlang.org&quot;&gt;D programming language&lt;/a&gt;</string>
 	<key>mainMenu</key>
 	<dict>
 		<key>items</key>
