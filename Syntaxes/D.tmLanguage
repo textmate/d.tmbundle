@@ -37,7 +37,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(deprecated|unittest|(static\s+)?assert|debug)\b</string>
+			<string>\s*\b(deprecated|unittest|(static\s+)?assert|debug)\b</string>
 			<key>name</key>
 			<string>keyword.other.debug.d</string>
 		</dict>
@@ -158,7 +158,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b((static\s+)?if|else|switch)\b</string>
+			<string>\s*\b((static\s+)?if|else|switch)\b</string>
 			<key>name</key>
 			<string>keyword.control.conditional.d</string>
 		</dict>
