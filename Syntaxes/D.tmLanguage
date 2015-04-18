@@ -36,10 +36,28 @@
 			<string>text.html.javadoc</string>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.debug.d</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.debug.d</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.debug.d</string>
+				</dict>
+			</dict>
 			<key>match</key>
-			<string>\s*\b(deprecated|unittest|(static\s+)?assert|debug)\b</string>
+			<string>\s*(\b(deprecated|unittest|debug)\b|((static)\s+)?(assert))</string>
 			<key>name</key>
-			<string>keyword.other.debug.d</string>
+			<string>meta.other.debug.d</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -157,10 +175,28 @@
 			<string>meta.version.d</string>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.conditional.d</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.conditional.d</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.conditional.d</string>
+				</dict>
+			</dict>
 			<key>match</key>
-			<string>\s*\b((static\s+)?if|else|switch)\b</string>
+			<string>\s*(\b(else|switch)\b|((static)\s+)?(if))</string>
 			<key>name</key>
-			<string>keyword.control.conditional.d</string>
+			<string>meta.control.conditional.d</string>
 		</dict>
 		<dict>
 			<key>begin</key>
