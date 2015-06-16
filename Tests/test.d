@@ -41,12 +41,12 @@ void main() {
 	debug {
     Stdout("this is from within debug { }").newline;
   }
-  
+
   foreach_reverse(i,c; name) {
     Stdout.format("{}:{}, ", i, c);
   }
   Stdout.newline;
-  
+
   auto mc = new MyClass(14);
   mc.run();
 }
