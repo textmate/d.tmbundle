@@ -50,3 +50,31 @@ void main() {
   auto mc = new MyClass(14);
   mc.run();
 }
+
+// "if" in "uniform" should not be parsed as keyword.control.conditional.d
+import std.random : Random, unpredictableSeed, uniform;
+
+// "static" and "if" should be parsed as keyword.control.conditional.d
+// "static" and "if be parsed as two separate words
+static if (true) {}
+
+void main()
+{
+    // "if" should be parsed as keyword.control.conditional.d
+    if (true) {}
+
+// "else" and "if" should be parsed as keyword.control.conditional.d
+// "else" and "if" should be parsed as two separate words
+else if (true) {}
+
+// "else" and "if" should be parsed as keyword.control.conditional.d
+// "else" and "if" should be parsed as two separate words
+else
+    if (true) {}
+
+    // "else" should be parsed as keyword.control.conditional.d
+    else{}
+
+// "if" should be parsed as keyword.control.conditional.d
+if (false) {}
+}
