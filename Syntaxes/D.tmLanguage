@@ -194,7 +194,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\s*(\b(else|switch)\b|((static)\s+)?(if))</string>
+			<string>\s*\b((else|switch)|((static)\s+)?(if))\b</string>
 			<key>name</key>
 			<string>meta.control.conditional.d</string>
 		</dict>
