@@ -468,7 +468,7 @@
 			<key>begin</key>
 			<string>(?x)^\s*
 					((?:\b(?:public|private|protected|static|final|synchronized|abstract|export|override|auto|nothrow|immutable|const|inout|ref|shared)\b\s*)*) # modifier
-					(?:([^\s]+))\s+ # return type
+					(?:(_|\w[^\s]*))\s+ # return type
 					(\w+)\s* # identifier
 					(?=\()</string>
 			<key>beginCaptures</key>
