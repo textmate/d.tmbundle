@@ -61,7 +61,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\s*(\b(deprecated|unittest|debug)\b|((static)\s+)?(assert))</string>
+			<string>\s*(\b(deprecated|unittest|debug)\b|(\b(static)\b\s+)?\b(assert)\b)</string>
 			<key>name</key>
 			<string>meta.other.debug.d</string>
 		</dict>
