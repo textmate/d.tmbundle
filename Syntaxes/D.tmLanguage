@@ -18,6 +18,12 @@
 	<key>patterns</key>
 	<array>
 		<dict>
+			<key>match</key>
+			<string>\A#!.+</string>
+			<key>name</key>
+			<string>comment.line.number-sign.shebang.d</string>
+		</dict>
+		<dict>
 			<key>captures</key>
 			<dict>
 				<key>0</key>
