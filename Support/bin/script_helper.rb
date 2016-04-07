@@ -65,9 +65,9 @@ module ScriptHelper
   end
 
   def dub?
-    jsonpath = File.join(TextMate.project_path, 'dub.json')
-    sdlpath = File.join(TextMate.project_path, 'dub.sdl')
-    File.exist?(jsonpath) || File.exist?(sdlpath)
+    json_path = File.join(TextMate.project_path, 'dub.json')
+    sdl_path = File.join(TextMate.project_path, 'dub.sdl')
+    File.exist?(json_path) || File.exist?(sdl_path)
   end
 
   def run_shell?
