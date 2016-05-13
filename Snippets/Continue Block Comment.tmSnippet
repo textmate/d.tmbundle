@@ -11,7 +11,7 @@
 	<key>name</key>
 	<string>Continue Block Comment</string>
 	<key>scope</key>
-	<string>source.d comment.block</string>
+	<string>source.d comment.block, source.d comment.block.documentation.javadoc</string>
 	<key>uuid</key>
 	<string>3B85C6F6-769C-4FF6-B70B-327BBEA574D7</string>
 </dict>
