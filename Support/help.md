@@ -42,6 +42,20 @@ executed is:
 
 Where `<current_file>` is the current active file.
 
+# D Completion Daemon (DCD)
+
+This bundle has support for the D Completion Daemon. DCD uses a server client
+architecture. Currently the server needs to be started and setup manually by
+the user. The bundle will then invoke the client binary to communicate with the
+server which provides all features.
+
+To install and setup refer to the DCD
+[documentation](https://github.com/Hackerpilot/dcd#setup).
+
+## Supported Features:
+
+* Completion ⌥⎋
+
 # Environment Variables
 
 The run and build commands recognizes the `TM_DMD` environment variable. This
@@ -49,3 +63,6 @@ should point to the compiler that is to be used when building. It needs to be
 compatible with the DMD command line interface, for GDC and LDC that means it
 needs to point to the `gdmd` or `ldmd` command. If the `TM_DMD` variable isn't
 present it will fallback to use `dmd`.
+
+The DCD related commands recognizes the `TM_DCD_CLIENT` environment
+variable. This should point to the `dcd-client` binary.

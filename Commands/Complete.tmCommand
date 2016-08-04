@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby18 -wKU
+
+require ENV['TM_SUPPORT_PATH'] + '/lib/ui'
+require ENV['TM_SUPPORT_PATH'] + '/lib/exit_codes'
+require ENV['TM_BUNDLE_SUPPORT'] + '/lib/text_mate'
+
+class Completer
+  ICON_MAP = {
+    "l" =&gt; "alias",
+    "a" =&gt; "array",
+    "A" =&gt; "associative_array",
+    "c" =&gt; "class",
+    "e" =&gt; "enum_member",
+    "g" =&gt; "enum",
+    "f" =&gt; "function",
+    "i" =&gt; "interface",
+    "k" =&gt; "keyword",
+    "T" =&gt; "mixin_template",
+    "M" =&gt; "module",
+    "P" =&gt; "package",
+    "s" =&gt; "struct",
+    "t" =&gt; "template",
+    "u" =&gt; "union",
+    "v" =&gt; "variable_name",
+    "m" =&gt; "variable"
+  }
+
+  attr_reader :session
+  attr_reader :dcd_client
+
+  def initialize
+    @session = TextMate::TextMateSession.current
+    @dcd_client = session.env.dcd_client || 'dcd-client'
+  end
+
+  def register_icons
+    support_path = session.bundle_support_path
+    icons_directory = File.join(support_path, 'res/completion_icons')
+    icons = ICON_MAP.values.map { |e| { e =&gt; "#{icons_directory}/#{e}.pdf" } }
+    session.dialog.register_images(icons)
+  end
+
+  def complete(document_content, cursor)
+    register_icons
+    stdout, stderr = Open3.capture3(document_content, dcd_client, "-c", cursor.to_s)
+    enforce(stderr)
+    result = parse_completion_result(stdout)
+    TextMate::UI.complete(result, :extra_chars =&gt; '_', :case_insensitive =&gt; true)
+  end
+
+  private
+
+  def enforce(error_message)
+    TextMate.exit_show_tool_tip(error_message) if error_message.any?
+  end
+
+  def parse_completion_result(result)
+    completions = result.split("\n")
+    return no_completions if completions.empty?
+    return parse_calltip(completions[1 .. -1]) if calltip?(completions)
+    extract_completions(completions)
+  end
+
+  def no_completions
+    TextMate.exit_show_tool_tip('No completions found')
+  end
+
+  def extract_completions(completions)
+    completions[1 .. -1].map do |line|
+      columns = line.split("\t")
+      icon = map_icon(columns[1])
+      { 'match' =&gt; columns.first, 'display' =&gt; columns.first + " " * 8, 'image' =&gt; icon }
+    end
+  end
+
+  def calltip?(completions)
+    completions.first == "calltips"
+  end
+
+  def parse_calltip(result)
+    result
+  end
+
+  def map_icon(symbol_type)
+    icon_name = ICON_MAP[symbol_type]
+    raise "No icon mapping for '#{symbol_type}'" if icon_name.nil?
+    icon_name
+  end
+end
+
+# preload document content
+session = TextMate::TextMateSession.current
+session.document.content
+
+Completer.new.complete(session.document.content, session.cursor)
+</string>
+	<key>input</key>
+	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>~</string>
+	<key>name</key>
+	<string>Complete</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>atCaret</string>
+	<key>scope</key>
+	<string>source.d</string>
+	<key>uuid</key>
+	<string>DE80CCA9-6CD2-45DB-BBD0-534FF8B24D82</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

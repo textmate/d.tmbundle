@@ -11,7 +11,11 @@ module TextMate
     end
 
     def method_missing(name)
-      self[name.upcase]
+      self[name.to_s.upcase]
+    end
+
+    def dialog
+      ENV['DIALOG']
     end
   end
 
