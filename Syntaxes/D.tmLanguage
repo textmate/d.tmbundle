@@ -90,7 +90,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?x)^\s*
+			<string>(?x)(?&lt;=^|\}|:)\s*
 					(else\s+)?(version)\s*
 					\(\s*
 					((DigitalMars|
@@ -206,7 +206,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?x)^\s*
+			<string>(?x)(?&lt;=^|\}|;)\s*
 					((?:\b(public|private|protected|static|final|synchronized|abstract|export|shared)\b\s*)*) # modifier
 					(class|interface)\s+
 					(\w+)\s* # identifier
@@ -327,7 +327,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?x)^\s*
+			<string>(?x)(?&lt;=^|\}|;)\s*
 					((?:\b(public|private|protected|static|final|synchronized|abstract|export|shared)\b\s*)*) # modifier
 					(struct)\s+
 					(\w+)\s* # identifier
@@ -398,7 +398,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?x)^\s*
+			<string>(?x)(?&lt;=^|\}|;)\s*
 					((?:\b(public|private|protected|static|final|synchronized|abstract|export)\b\s*)*) # modifier
 					(\b(this))\s* # identifier
 					(?=\()</string>
@@ -472,7 +472,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?x)^\s*
+			<string>(?x)(?&lt;=^|\}|;)\s*
 					((?:\b(?:public|private|protected|static|final|synchronized|abstract|export|override|auto|nothrow|immutable|const|inout|ref|shared)\b\s*)*) # modifier
 					(?:(_|\w[^"'`\s]*))\s+ # return type
 					(\w+)\s* # identifier
@@ -518,7 +518,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?x)^\s*
+			<string>(?x)(?&lt;=^|;)\s*
 					(__traits)
 					\(
 					(isAbstractClass|
@@ -560,7 +560,7 @@
 					derivedMembers|
 					isSame|
 					compiles)
-					,</string>
+					</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
