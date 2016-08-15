@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby20
+
+require ENV['TM_BUNDLE_SUPPORT'] + '/lib/text_mate'
+TextMate.require_bundle 'lib/commands/docummentation_command'
+
+DocummentationCommand.new.run
+</string>
+	<key>input</key>
+	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>^h</string>
+	<key>name</key>
+	<string>Documentation for Word</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.d</string>
+	<key>uuid</key>
+	<string>8877DBE4-46AA-42D4-A0BB-7E0D92EC6AC4</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
