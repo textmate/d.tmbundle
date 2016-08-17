@@ -40,8 +40,9 @@ module ScriptHelper
     if run_shell?
       ['bash', run_shell_path]
     elsif dub?
-      compiler = Compiler.dub
-      [compiler, dub_command, compiler.version_options]
+      dub = Compiler.dub
+      compiler = Compiler.dmd
+      [dub, dub_command, "--compiler=#{compiler}", dub.version_options]
     else
       run_single_file
     end
