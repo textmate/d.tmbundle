@@ -55,7 +55,7 @@ To install and setup refer to the DCD
 ## Supported Features:
 
 * Completion ⌥⎋
-* Go To Definition ⇧⌘D
+* Go To Definition ⌘Click
 * Generate documentation ⌃H
 
 # Environment Variables

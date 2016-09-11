@@ -16,8 +16,6 @@ GoToDefinitionCommand.new.run
 	<string>document</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>keyEquivalent</key>
-	<string>@D</string>
 	<key>name</key>
 	<string>Go to Definition</string>
 	<key>outputCaret</key>
@@ -27,7 +25,9 @@ GoToDefinitionCommand.new.run
 	<key>outputLocation</key>
 	<string>atCaret</string>
 	<key>scope</key>
-	<string>source.d</string>
+	<string>source.d dyn.modifier.command</string>
+	<key>semanticClass</key>
+	<string>callback.single-click, callback.mouse-click</string>
 	<key>uuid</key>
 	<string>99AFC116-8E25-4976-A424-34DC6F03DC53</string>
 	<key>version</key>
