@@ -32,6 +32,8 @@ class Completer
     "m" =&gt; "variable"
   }
 
+  BUNDLE_IDENTIFIER = 'com.github.textmate.d'
+
   attr_reader :session
   attr_reader :dcd_client
 
@@ -43,7 +45,12 @@ class Completer
   def register_icons
     support_path = session.bundle_support_path
     icons_directory = File.join(support_path, 'res/completion_icons')
-    icons = ICON_MAP.values.map { |e| { e =&gt; "#{icons_directory}/#{e}.pdf" } }
+
+    icons = ICON_MAP.values.map do |e|
+      [icon_name(e), "#{icons_directory}/#{e}.pdf"]
+    end
+
+    icons = Hash[icons]
     session.dialog.register_images(icons)
   end
 
@@ -76,7 +83,7 @@ class Completer
     completions[1 .. -1].map do |line|
       columns = line.split("\t")
       icon = map_icon(columns[1])
-      { 'match' =&gt; columns.first, 'display' =&gt; columns.first + " " * 8, 'image' =&gt; icon }
+      { 'match' =&gt; columns.first, 'display' =&gt; columns.first, 'image' =&gt; icon }
     end
   end
 
@@ -89,9 +96,13 @@ class Completer
   end
 
   def map_icon(symbol_type)
-    icon_name = ICON_MAP[symbol_type]
-    raise "No icon mapping for '#{symbol_type}'" if icon_name.nil?
-    icon_name
+    key = ICON_MAP[symbol_type]
+    raise "No icon mapping for '#{symbol_type}'" if key.nil?
+    icon_name(key)
+  end
+
+  def icon_name(name)
+    BUNDLE_IDENTIFIER + '-' + name
   end
 end
 

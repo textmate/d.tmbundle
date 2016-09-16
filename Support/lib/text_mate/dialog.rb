@@ -7,7 +7,7 @@ module TextMate
     end
 
     def register_images(images)
-      images = images.map { |k, v| "#{k} = #{v}" }.join(' ')
+      images = images.map { |k, v| "#{k} = '#{v}';" }.join(' ')
       icon_plist = "{ #{images} }"
       system(env.dialog, 'images', '--register', icon_plist)
     end
