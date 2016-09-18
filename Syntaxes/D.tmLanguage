@@ -731,7 +731,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(return|with|invariant|body|scope|asm|mixin|function|delegate)\b</string>
+			<string>\b(return|with|invariant|body|scope|asm|mixin|function|delegate|out|in)\b</string>
 			<key>name</key>
 			<string>keyword.control.statement.d</string>
 		</dict>
