@@ -911,6 +911,12 @@
 		</dict>
 		<dict>
 			<key>match</key>
+			<string>=&gt;</string>
+			<key>name</key>
+			<string>keyword.operator.lambda.d</string>
+		</dict>
+		<dict>
+			<key>match</key>
 			<string>\b(new|delete|typeof|typeid|cast|align|is)\b</string>
 			<key>name</key>
 			<string>keyword.operator.d</string>
