@@ -5,9 +5,11 @@ TextMate.require_support 'lib/ui'
 
 TextMate.require_bundle 'lib/commands/dcd_command'
 TextMate.require_bundle 'lib/commands/ddoc_macros'
+TextMate.require_bundle 'lib/dmate/compiler'
 
 class DocummentationCommand < DcdCommand
   include DdocMacros
+  include DMate
 
   def initialize
     super
@@ -59,7 +61,7 @@ class DocummentationCommand < DcdCommand
 
   def execute_ddoc_command(dir, ddoc_file, output_file)
     result = Dir.chdir(dir) do
-      `#{session.env.dmd} -D -c -o- #{ddoc_file} -of#{output_file} 2>&1`
+      `#{Compiler.dmd} -D -c -o- #{ddoc_file} -of#{output_file} 2>&1`
     end
 
     enforce(result)
