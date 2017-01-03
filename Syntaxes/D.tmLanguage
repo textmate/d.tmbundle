@@ -606,7 +606,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\b(extern)\b(\s*\(\s*(((C\+\+)(\s*,\s*[A-Za-z_][A-Za-z0-9._]*)?)|(C|D|Windows|Pascal|System))\s*\))?</string>
+			<string>\b(extern)\b(\s*\(\s*(((C\+\+)(\s*,\s*[A-Za-z_][A-Za-z0-9._]*)?)|(C|D|Windows|Pascal|System|Objective-C))\s*\))?</string>
 			<key>name</key>
 			<string>meta.external.d</string>
 		</dict>
