@@ -310,29 +310,41 @@
 		<dict>
 			<key>begin</key>
 			<string>(?x)(?&lt;=^|\}|;)\s*
-					((?:\b(public|private|protected|static|final|synchronized|abstract|export|shared)\b\s*)*) # modifier
-					(struct)\s+
-					(\w+)\s* # identifier
-					(?:\(\s*([^\)]+)\s*\)|)\s* # Template type
+					(?&lt;meta_modifier&gt;
+						(?:
+							(?:
+								(?:(?:\b(?:public|private|protected|static|final|synchronized|abstract|export|shared)\b)) |
+								(?:\b(?:extern)\b(?:\s*\(\s*(?:(?:(?:C\+\+)(?:\s*,\s*[A-Za-z_][A-Za-z0-9._]*)?)|\b(?:C|D|Windows|Pascal|System|Objective-C)\b)\s*\))?)
+							)\s*
+						)*
+					)
+					(?&lt;structure&gt;struct)\s+
+					(?&lt;identifier&gt;\w+)\s*
+					(?:\(\s*(?&lt;template_params&gt;[^\)]+)\s*\)|)\s*
 					</string>
 			<key>beginCaptures</key>
 			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>storage.modifier.d</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>storage.type.structure.d</string>
-				</dict>
-				<key>4</key>
+				<key>identifier</key>
 				<dict>
 					<key>name</key>
 					<string>entity.name.type.struct.d</string>
 				</dict>
-				<key>5</key>
+				<key>meta_modifier</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#meta-modifier</string>
+						</dict>
+					</array>
+				</dict>
+				<key>structure</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.structure.d</string>
+				</dict>
+				<key>template_params</key>
 				<dict>
 					<key>patterns</key>
 					<array>
