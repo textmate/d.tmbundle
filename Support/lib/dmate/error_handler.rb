@@ -70,13 +70,16 @@ module DMate
     end
 
     def module_to_path(module_name)
-      return module_name if File.exist?(module_name) || !TextMate.project?
+      if File.exist?(module_name) || !TextMate.project?
+        return File.absolute_path(module_name)
+      end
 
       path = File.join(TextMate.project_path, module_name)
       return path if File.exist?(path)
 
       path = path.gsub('.', File::SEPARATOR)
-      File.exist?(path + '.di') ? path + '.di' : path + '.d'
+      path = File.exist?(path + '.di') ? path + '.di' : path + '.d'
+      File.absolute_path(path)
     end
   end
 end
