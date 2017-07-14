@@ -50,11 +50,7 @@ body.dlang .ddoc_header_anchor .code {
 }
 
 #ddoc_main .module {
-    border-color: currentColor rgba(233, 233, 233, 1) rgba(233, 233, 233, 1);
-    border-style: none solid solid;
-    border-width: 0 1px 1px;
     overflow-x: hidden;
-    padding: 15px;
 }
 
 #ddoc_main .section .section {
@@ -88,7 +84,6 @@ body.dlang .ddoc_header_anchor .code {
   left: 0;
   top: 0;
   padding: 0;
-  padding-left: 15px;
 }
 
 #ddoc_main .ddoc_decl .section, #ddoc_main .section.ddoc_sections {
@@ -222,22 +217,15 @@ body.ddoc {
 .ddoc .module {
     border-color: transparent;
     background-color: rgba(255, 255, 255, 1);
-    border-color: currentColor rgba(233, 233, 233, 1) rgba(233, 233, 233, 1);
-    border-image: none;
-    border-style: none solid solid;
-    border-width: 0 1px 1px;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.07);
     display: block;
     margin-left: 0;
     min-height: calc(100% - 173px);
     overflow: auto;
-    padding-bottom: 100px;
 }
 
 .ddoc .content_wrapper {
     background-color: rgba(242, 242, 242, 1);
-    margin: 0 auto;
-    max-width: 980px;
+    margin: 0;
 }
 
 .ddoc .section {
@@ -299,7 +287,6 @@ body.ddoc {
 .ddoc .code_sample {
   display: block;
   font-size: 1.4em;
-  margin-left: 21px;
 }
 
 .ddoc ol .code_sample {
