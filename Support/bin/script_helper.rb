@@ -32,7 +32,7 @@ module ScriptHelper
   def run_single_file
     rdmd = Compiler.rdmd
     compiler = Compiler.dmd
-    [rdmd, '-vcolumns', "--compiler=#{compiler}", TextMate.env.filepath,
+    [rdmd.executable, '-vcolumns', "--compiler=#{compiler.executable}", TextMate.env.filepath,
       compiler.version_options]
   end
 
@@ -42,7 +42,7 @@ module ScriptHelper
     elsif dub?
       dub = Compiler.dub
       compiler = Compiler.dmd
-      [dub, dub_command, "--compiler=#{compiler}", dub.version_options]
+      [dub, dub_command, "--compiler=#{compiler.executable}", dub.version_options]
     else
       run_single_file
     end
