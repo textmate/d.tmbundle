@@ -116,9 +116,18 @@
 					SysV4|
 					Hurd|
 					Android|
+					Emscripten|
+					PlayStation|
+					PlayStation4|
 					Cygwin|
 					MinGW|
 					FreeStanding|
+					CRuntime_Bionic|
+					CRuntime_DigitalMars|
+					CRuntime_Glibc|
+					CRuntime_Microsoft|
+					CRuntime_Musl|
+					CRuntime_UClibc|
 					X86|
 					X86_64|
 					ARM|
@@ -127,6 +136,7 @@
 					ARM_SoftFP|
 					ARM_HardFloat|
 					AArch64|
+					AsmJS|
 					Epiphany|
 					PPC|
 					PPC_SoftFloat|
@@ -144,22 +154,27 @@
 					MIPS_HardFloat|
 					NVPTX|
 					NVPTX64|
+					RISCV32|
+					RISCV64|
 					SPARC|
 					SPARC_V8Plus|
 					SPARC_SoftFloat|
 					SPARC_HardFloat|
 					SPARC64|
 					S390|
-					S390X|
+					SystemZ|
 					HPPA|
 					HPPA64|
 					SH|
-					SH64|
+					WebAssembly|
 					Alpha|
 					Alpha_SoftFloat|
 					Alpha_HardFloat|
 					LittleEndian|
 					BigEndian|
+					ELFv1|
+					ELFv2|
+					D_BetterC|
 					D_Coverage|
 					D_Ddoc|
 					D_InlineAsm_X86|
@@ -170,12 +185,15 @@
 					D_SoftFloat|
 					D_PIC|
 					D_SIMD|
+					D_AVX|
+					D_AVX2|
 					D_Version2|
 					D_NoBoundsChecks|
+					D_ObjectiveC|
 					unittest|
 					assert|
 					none|
-					all)|(darwin|Thumb)|([A-Za-z_][A-Za-z0-9_]*))
+					all)|(darwin|Thumb|S390X)|([A-Za-z_][A-Za-z0-9_]*))
 					\s*\)</string>
 			<key>name</key>
 			<string>meta.version.d</string>
