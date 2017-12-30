@@ -31,6 +31,8 @@ module TextMate
 
     # Returns the line and column for the given cursor in bytes and content
     def to_column_line(cursor, content)
+      return [1, 1] if cursor == 0
+
       content_before_cursor = content[0 .. cursor]
       lines = content_before_cursor.split("\n")
       line = lines.length
