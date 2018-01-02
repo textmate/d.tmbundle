@@ -42,7 +42,7 @@ module ScriptHelper
     elsif dub?
       dub = Compiler.dub
       compiler = Compiler.dmd
-      [dub, dub_command, "--compiler=#{compiler.executable}", dub.version_options]
+      [dub.executable, dub_command, "--compiler=#{compiler.executable}", dub.version_options]
     else
       run_single_file
     end
