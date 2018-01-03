@@ -29,6 +29,10 @@ module DMate
       end
     end
 
+    def method_missing(*args, &block)
+      executable.send(*args, &block)
+    end
+
     def version_options
       { version_args: '--help' }
     end
