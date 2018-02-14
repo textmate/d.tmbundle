@@ -17,5 +17,9 @@ module TextMate
     def uuid
       env.document_uuid
     end
+
+    def filepath
+      env.filepath
+    end
   end
 end

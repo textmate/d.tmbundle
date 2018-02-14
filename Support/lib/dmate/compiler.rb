@@ -55,6 +55,10 @@ module DMate
       def build
         'build'
       end
+
+      def test
+        'test'
+      end
     end
 
     class Shell < Compiler
@@ -64,6 +68,10 @@ module DMate
 
       def build
         'build.sh'
+      end
+
+      def test
+        'test.sh'
       end
     end
   end

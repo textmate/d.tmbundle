@@ -4,7 +4,8 @@ There are three commands to build or run a project:
 
 * Run ⌘R
 * Build ⌘B
-* Run Single File ⇧⌘R
+* Test ⇧⌘R
+* Run Single File ⌃⇧⌘R
 
 ## Run
 
@@ -31,6 +32,21 @@ the `dub build` command will be executed
 
 3. Otherwise it will fallback to the <a href="javascript:goTo('sect_1.3')">Run Single File</a> command but with the extra
 `--build-only` flag
+
+## Test
+
+The Test command will build with unit tests enabled and run the current project
+in the following way:
+
+1. If a file name `test.sh` exists in the current working directory, that will
+be executed
+
+2. If a filed name `dub.json` or `dub.sdl` exists in the current working
+  directory the `dub test` command will be executed
+
+3. Otherwise it will fallback to the
+  <a href="javascript:goTo('sect_1.3')">Run Single File</a> command but with the
+  extra `-unittest` flag
 
 ## Run Single File
 
