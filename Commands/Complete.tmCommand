@@ -56,7 +56,7 @@ class Completer
 
   def complete(document_content, cursor)
     register_icons
-    stdout, stderr = Open3.capture3(document_content, dcd_client, "-c", cursor.to_s)
+    stdout, stderr = Open3.capture3(document_content, dcd_client, "-c", cursor.to_s, '--extended')
     enforce(stderr)
     result = parse_completion_result(stdout)
     TextMate::UI.complete(result, :extra_chars =&gt; '_', :case_insensitive =&gt; true)
@@ -83,7 +83,7 @@ class Completer
     completions[1 .. -1].map do |line|
       columns = line.split("\t")
       icon = map_icon(columns[1])
-      { 'match' =&gt; columns.first, 'display' =&gt; columns.first, 'image' =&gt; icon }
+      { 'match' =&gt; columns.first, 'display' =&gt; display(columns), 'image' =&gt; icon, 'tooltip' =&gt; columns[4] || '' }
     end
   end
 
@@ -103,6 +103,11 @@ class Completer
 
   def icon_name(name)
     BUNDLE_IDENTIFIER + '-' + name
+  end
+
+  def display(columns)
+    display = columns[2] || columns.first
+    display.empty? ? columns.first : display
   end
 end
 
