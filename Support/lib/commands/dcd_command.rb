@@ -13,8 +13,12 @@ class DcdCommand
 
   def run
     enforce_current_word
-    stdout, stderr = Open3.capture3(dcd_client, *dcd_args,
-      stdin_data: session.document.content)
+    # this elaborate way to call `capture3` is to make it compatible with
+    # both Ruby 1.8 and later. In Ruby 1.8 it's not possible to have any
+    # arguments after a splat (*).
+    args = [dcd_client, *dcd_args]
+    args << { :stdin_data => session.document.content }
+    stdout, stderr = Open3.capture3(*args)
     enforce(stderr)
     stdout
   end
