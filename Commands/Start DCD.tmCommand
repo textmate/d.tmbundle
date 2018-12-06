@@ -2,35 +2,40 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>autoScrollOutput</key>
-	<true/>
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby20
 
-require ENV['TM_BUNDLE_SUPPORT'] + '/lib/text_mate'
-TextMate.require_bundle 'bin/run_single_script'</string>
+require ENV['TM_SUPPORT_PATH'] + '/lib/tm/detach'
+
+# We're using `TextMate.detach` to run this in the background to avoid blocking
+# the UI when running this command.
+TextMate.detach do
+  require ENV['TM_BUNDLE_SUPPORT'] + '/lib/text_mate'
+  TextMate.require_bundle 'lib/commands/start_dcd_server'
+
+  StartDcdServer.new.run
+end
+</string>
 	<key>input</key>
-	<string>document</string>
+	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>keyEquivalent</key>
-	<string>^@R</string>
 	<key>name</key>
-	<string>Run Single File</string>
+	<string>Start DCD Server</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
-	<string>html</string>
+	<string>text</string>
 	<key>outputLocation</key>
-	<string>newWindow</string>
+	<string>discard</string>
 	<key>scope</key>
 	<string>source.d</string>
 	<key>semanticClass</key>
-	<string>process.run.script.d</string>
+	<string>callback.document.did-open</string>
 	<key>uuid</key>
-	<string>2E0857A0-2E1D-4ABB-8E00-BDE8A86ACD36</string>
+	<string>6B9D73C8-8E6B-45FE-A0A0-25B528EDE5E1</string>
 	<key>version</key>
 	<integer>2</integer>
 </dict>

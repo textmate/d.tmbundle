@@ -61,9 +61,9 @@ Where `<current_file>` is the current active file.
 # D Completion Daemon (DCD)
 
 This bundle has support for the D Completion Daemon. DCD uses a server client
-architecture. Currently the server needs to be started and setup manually by
-the user. The bundle will then invoke the client binary to communicate with the
-server which provides all features.
+architecture. The server will be started automatically as soon as a D document
+is opened and add the default import paths to DCD. The bundle will then invoke
+the client binary to communicate with the server which provides all features.
 
 To install and setup refer to the DCD
 [documentation](https://github.com/Hackerpilot/dcd#setup).

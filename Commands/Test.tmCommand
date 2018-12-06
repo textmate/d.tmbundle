@@ -7,9 +7,10 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>#!/usr/bin/env ruby
+	<string>#!/usr/bin/env ruby20
 
-require ENV['TM_BUNDLE_SUPPORT'] + '/bin/test_script'</string>
+require ENV['TM_BUNDLE_SUPPORT'] + '/lib/text_mate'
+TextMate.require_bundle 'bin/test_script'</string>
 	<key>input</key>
 	<string>document</string>
 	<key>inputFormat</key>

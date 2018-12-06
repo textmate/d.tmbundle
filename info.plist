@@ -10,6 +10,10 @@
 	<string>Syntax highlight for the &lt;a href="http://dlang.org"&gt;D programming language&lt;/a&gt;</string>
 	<key>mainMenu</key>
 	<dict>
+		<key>excludedItems</key>
+		<array>
+			<string>6B9D73C8-8E6B-45FE-A0A0-25B528EDE5E1</string>
+		</array>
 		<key>items</key>
 		<array>
 			<string>108A335C-282D-459B-AD2C-72AB9B30BFB2</string>

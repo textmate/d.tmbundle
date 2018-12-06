@@ -38,6 +38,43 @@ module DMate
     end
 
     class Dmd < Compiler
+      def initialize
+        @session = ::TextMate::TextMateSession.current
+      end
+
+      def import_paths
+        result, _, status = ::Open3.capture3(compiler_path, '-v', '-o-', '-',
+          stdin_data: '')
+        return [] unless status.success?
+        parse_import_paths(result)
+      end
+
+      def compiler_path
+        @compiler_path ||= session.env.dmd ? session.env.dmd : which('dmd')
+      end
+
+      private
+
+      attr_reader :session
+
+      def parse_import_paths(compiler_output)
+        compiler_output
+          .lines
+          .map(&:strip)
+          .find { |line| line.start_with?('DFLAGS') }
+          .split(' ')
+          .select { |e| e.start_with?('-I') }
+          .map { |e| e[2 .. -1] }
+      end
+
+      def which(executable)
+        session.env.path.each do |path|
+          file = File.join(path, 'dmd')
+          return file if File.executable?(file)
+        end
+
+        return nil
+      end
     end
 
     class Rdmd < Compiler
