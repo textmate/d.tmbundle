@@ -7,11 +7,11 @@
 	<key>command</key>
 	<string>#!/usr/bin/env ruby20
 
-require ENV['TM_SUPPORT_PATH'] + '/lib/tm/detach'
+require ENV['TM_BUNDLE_SUPPORT'] + '/lib/text_mate/process'
 
 # We're using `TextMate.detach` to run this in the background to avoid blocking
 # the UI when running this command.
-TextMate.detach do
+TextMate::Process.detach do
   require ENV['TM_BUNDLE_SUPPORT'] + '/lib/text_mate'
   TextMate.require_bundle 'lib/commands/start_dcd_server'
 

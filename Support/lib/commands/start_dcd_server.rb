@@ -1,5 +1,3 @@
-TextMate.require_support 'lib/tm/detach'
-
 TextMate.require_bundle 'lib/dmate/compiler'
 TextMate.require_bundle 'lib/commands/dcd_command'
 
@@ -20,7 +18,7 @@ class StartDcdServer < DcdCommand
   end
 
   def start_dcd_server
-    TextMate.detach { exec(dcd_server) }
+    TextMate::Process.detach { exec(dcd_server) }
     add_import_paths(import_paths)
   end
 
