@@ -23,7 +23,7 @@ end
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>name</key>
-	<string>Start DCD Server</string>
+	<string>Start Completion Server</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
