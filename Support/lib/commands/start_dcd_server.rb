@@ -18,13 +18,8 @@ class StartDcdServer < DcdCommand
   end
 
   def start_dcd_server
-    TextMate::Process.detach { exec(dcd_server) }
-    add_import_paths(import_paths)
-  end
-
-  def add_import_paths(import_paths)
-    import_paths = import_paths.flat_map { |e| ['-I', e] }
-    sh dcd_client, *import_paths unless import_paths.empty?
+    cmd = [dcd_server] + import_paths.flat_map { |e| ['-I', e] }
+    TextMate::Process.detach { exec(*cmd) }
   end
 
   def import_paths
@@ -51,10 +46,5 @@ class StartDcdServer < DcdCommand
       .split(File::PATH_SEPARATOR)
       .map { |path| File.join(path, 'dcd-server') }
       .any? { |e| File.executable?(e) }
-  end
-
-  def sh(*args)
-    _, stderr, status = Open3.capture3(*args)
-    TextMate.exit_show_tool_tip(stderr) unless status.success?
   end
 end
