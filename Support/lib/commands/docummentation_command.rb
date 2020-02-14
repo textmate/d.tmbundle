@@ -1,8 +1,6 @@
 require 'English'
 require 'tempfile'
 
-TextMate.require_support 'lib/ui'
-
 TextMate.require_bundle 'lib/commands/dcd_command'
 TextMate.require_bundle 'lib/commands/ddoc_macros'
 TextMate.require_bundle 'lib/dmate/compiler'
