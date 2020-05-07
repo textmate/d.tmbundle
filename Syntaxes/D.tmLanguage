@@ -673,6 +673,7 @@
 					property|
 					disable|
 					nogc|
+					live|
 					safe|
 					trusted|
 					system
