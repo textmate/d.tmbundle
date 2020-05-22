@@ -125,6 +125,11 @@
                 Cygwin|
                 MinGW|
                 FreeStanding|
+                CppRuntime_Clang|
+                CppRuntime_DigitalMars|
+                CppRuntime_Gcc|
+                CppRuntime_Microsoft|
+                CppRuntime_Sun|
                 CRuntime_Bionic|
                 CRuntime_DigitalMars|
                 CRuntime_Glibc|
