@@ -136,6 +136,7 @@
                 CRuntime_Microsoft|
                 CRuntime_Musl|
                 CRuntime_UClibc|
+                CRuntime_WASI|
                 X86|
                 X86_64|
                 ARM|
@@ -175,6 +176,7 @@
                 HPPA64|
                 SH|
                 WebAssembly|
+                WASI|
                 Alpha|
                 Alpha_SoftFloat|
                 Alpha_HardFloat|
