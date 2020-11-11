@@ -1150,27 +1150,8 @@
 					<string>comment.block.d</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>/\+</string>
-					<key>captures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.comment.d</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>\+/</string>
-					<key>name</key>
-					<string>comment.block.nested.d</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>$self</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#nested_comment</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -1263,6 +1244,35 @@
 			</string>
 			<key>name</key>
 			<string>meta.modifier.d</string>
+		</dict>
+		<key>nested_comment</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>/\+</string>
+					<key>captures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.comment.d</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\+/</string>
+					<key>name</key>
+					<string>comment.block.nested.d</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#nested_comment</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
 		</dict>
 		<key>regular_expressions</key>
 		<dict>
