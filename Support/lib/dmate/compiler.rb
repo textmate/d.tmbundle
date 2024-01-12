@@ -1,3 +1,5 @@
+require 'json'
+
 module DMate
   class Compiler < BasicObject
     class << self
@@ -43,8 +45,9 @@ module DMate
       end
 
       def import_paths
-        result, _, status = ::Open3.capture3(compiler_path, '-v', '-o-', '-',
-          stdin_data: '')
+        result, _, status = ::Open3.capture3(
+          compiler_path, '-Xf=-', '-Xi=buildInfo', '-o-', '-', stdin_data: ''
+        )
         return [] unless status.success?
         parse_import_paths(result)
       end
@@ -58,13 +61,9 @@ module DMate
       attr_reader :session
 
       def parse_import_paths(compiler_output)
-        compiler_output
-          .lines
-          .map(&:strip)
-          .find { |line| line.start_with?('DFLAGS') }
-          .split(' ')
-          .select { |e| e.start_with?('-I') }
-          .map { |e| e[2 .. -1] }
+        ::JSON
+          .parse(compiler_output)
+          .dig('buildInfo', 'importPaths') || []
       end
 
       def which(executable)
