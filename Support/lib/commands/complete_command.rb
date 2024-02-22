@@ -14,6 +14,7 @@ class CompleteCommand < DcdCommand
     'e' => 'enum_member',
     'g' => 'enum',
     'f' => 'function',
+    'F' => 'function',
     'i' => 'interface',
     'k' => 'keyword',
     'T' => 'mixin_template',
